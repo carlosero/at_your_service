@@ -1,27 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  describe "#initialize" do
-    it "should generate invalid customer" do
-      customer = Customer.new
-      expect(customer).to be_invalid
-    end
+  it "has a valid factory" do
+    expect(FactoryGirl.build(:customer)).to be_valid
   end
 
-  it "should be valid with a valid data" do
-    customer = FactoryGirl.create('customer')
-    expect(customer.id).to eq(Customer.last.id)
+  it "is invalid without a name" do
+    expect(FactoryGirl.build(:customer, name: nil)).to be_invalid
   end
 
-  it "should have a valid email" do
-    customer = FactoryGirl.create('customer')
-    customer.email = 'test'
-    expect(customer).to be_invalid
+  it "is invalid without email" do
+    expect(FactoryGirl.build(:customer, email: nil)).to be_invalid
   end
 
-  it "should have unique email" do
-    customer = FactoryGirl.create('customer')
-    expect(Customer.new(name: 'Foo Bar', email: customer.email)).to be_invalid
+  it "is invalid with a wrong email" do
+    expect(FactoryGirl.build(:customer, email: 'test.com')).to be_invalid
+  end
+
+  it "doest not allow duplicated email" do
+    customer = FactoryGirl.create(:customer)
+    expect(FactoryGirl.build(:customer, email: customer.email)).to be_invalid
   end
 
 end
