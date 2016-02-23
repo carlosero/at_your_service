@@ -25,7 +25,7 @@ gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'simple_form'
 
-group :test do
+group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'faker'
