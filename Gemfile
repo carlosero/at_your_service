@@ -20,6 +20,11 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+# UI
+gem "twitter-bootstrap-rails"
+gem "slim-rails"
+gem 'simple_form'
+
 group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
