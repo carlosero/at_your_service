@@ -25,6 +25,7 @@ gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'simple_form'
 gem 'jquery-ui-rails'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

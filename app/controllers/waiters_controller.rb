@@ -4,7 +4,7 @@ class WaitersController < ApplicationController
   # GET /waiters
   # GET /waiters.json
   def index
-    @waiters = Waiter.active.all
+    @waiters = Waiter.active.paginate(:page => params[:page])
   end
 
   # GET /waiters/1

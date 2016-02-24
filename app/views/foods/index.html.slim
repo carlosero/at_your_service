@@ -21,4 +21,6 @@ table class="table table-striped"
           '
           = link_to t('.destroy', :default => t("helpers.links.destroy")), food_path(food), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 
+= will_paginate(@foods)
+.clear
 = link_to t('.new', :default => t("helpers.links.new")), new_food_path(food_type: params[:food_type]), :class => 'btn btn-primary'

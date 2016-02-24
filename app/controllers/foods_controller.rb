@@ -11,8 +11,9 @@ class FoodsController < ApplicationController
     elsif params[:food_type] == 'foods'
       @foods = Food.active.foods
     else
-      @foods = Food.active.all
+      @foods = Food.active
     end
+    @foods = @foods.paginate(:page => params[:page])
   end
 
   # GET /foods/1
