@@ -19,9 +19,10 @@ class Order < ActiveRecord::Base
     foods_orders.map(&:total_price).sum
   end
 
-  def close
+  def close!
     self.status = 'finished'
     table.in_use = false
     table.save
+    save
   end
 end

@@ -8,6 +8,7 @@ table class="table table-striped"
       th= model_class.human_attribute_name(:waiter_id)
       th= model_class.human_attribute_name(:customer_id)
       th= model_class.human_attribute_name(:table_id)
+      th Total Price
       th= model_class.human_attribute_name(:status)
       th= model_class.human_attribute_name(:created_at)
       th=t '.actions', :default => t("helpers.actions")
@@ -18,6 +19,7 @@ table class="table table-striped"
         td= link_to(order.waiter.name, waiter_path(order.waiter))
         td= link_to(order.customer.name, customer_path(order.customer))
         td= link_to(order.table.id, table_path(order.table))
+        td= number_to_currency(order.total_price)
         td= order.status
         td=l order.created_at
         td
@@ -25,7 +27,6 @@ table class="table table-striped"
           '
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(order), :class => 'btn btn-default btn-xs'
           '
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(order), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+          = link_to t('.close', :default => t("helpers.links.close")), close_order_path(order), :method => :get, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 
 = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
-
