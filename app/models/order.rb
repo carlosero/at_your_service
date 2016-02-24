@@ -18,4 +18,10 @@ class Order < ActiveRecord::Base
   def total_price
     foods.sum(:price)
   end
+
+  def close
+    self.status = 'finished'
+    table.in_use = false
+    table.save
+  end
 end

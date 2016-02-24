@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :close]
 
   # GET /orders
   # GET /orders.json
@@ -62,6 +62,20 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # custom routes
+  def close
+    @order.close
+    @order.save
+    redirect_to tables_path
+  end
+
+  # custom routes
+  def add_food
+    @order.close
+    @order.save
+    redirect_to tables_path
   end
 
   private
