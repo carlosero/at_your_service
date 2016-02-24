@@ -4,21 +4,19 @@ div class="page-header"
 table class="table table-striped"
   thead
     tr
-      th= model_class.human_attribute_name(:id)
       th= model_class.human_attribute_name(:name)
       th= model_class.human_attribute_name(:phone)
       th= model_class.human_attribute_name(:email)
-      th= model_class.human_attribute_name(:created_at)
       th=t '.actions', :default => t("helpers.actions")
   tbody
     - @waiters.each do |waiter|
       tr
-        td= link_to waiter.id, waiter_path(waiter)
         td= waiter.name
         td= waiter.phone
         td= waiter.email
-        td=l waiter.created_at
         td
+          = link_to t('.view', :default => t("helpers.links.view")), waiter_path(waiter), :class => 'btn btn-info btn-xs'
+          '
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_waiter_path(waiter), :class => 'btn btn-default btn-xs'
           '
           = link_to t('.destroy', :default => t("helpers.links.destroy")), waiter_path(waiter), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

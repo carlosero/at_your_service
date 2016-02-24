@@ -5,15 +5,15 @@ div class="page-header"
 p
   strong= model_class.human_attribute_name(:waiter_id) + ':'
   br
-  = @order.waiter_id
+  = link_to(@order.waiter.name, waiter_path(@order.waiter))
 p
   strong= model_class.human_attribute_name(:customer_id) + ':'
   br
-  = @order.customer_id
+  = link_to(@order.customer.name, customer_path(@order.customer))
 p
   strong= model_class.human_attribute_name(:table_id) + ':'
   br
-  = @order.table_id
+  = link_to(@order.table.id, table_path(@order.table))
 p
   strong= model_class.human_attribute_name(:status) + ':'
   br

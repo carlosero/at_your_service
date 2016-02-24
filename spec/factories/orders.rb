@@ -3,7 +3,7 @@ FactoryGirl.define do
     waiter
     customer
     association :table, factory: :table_in_use
-    status :active
+    status 'active'
     factory :order_with_foods do
       transient do
         foods_count 5
