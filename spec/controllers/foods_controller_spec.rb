@@ -19,6 +19,7 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe FoodsController, type: :controller do
+  login_admin
 
   # This should return the minimal set of attributes required to create a valid
   # Food. As you add validations to Food, be sure to

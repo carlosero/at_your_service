@@ -28,6 +28,9 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'ransack'
 
+# login
+gem 'devise'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'

@@ -19,6 +19,7 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe WaitersController, type: :controller do
+  login_admin
 
   # This should return the minimal set of attributes required to create a valid
   # Waiter. As you add validations to Waiter, be sure to

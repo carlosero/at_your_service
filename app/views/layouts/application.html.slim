@@ -31,10 +31,23 @@ html lang="en"
             ul.nav.navbar-nav
               li= link_to "Tables", "/tables"
               li= link_to "Orders", "/orders"
-              li= link_to "Foods", "/foods?food_type=foods"
-              li= link_to "Drinks", "/foods?food_type=drinks"
-              li= link_to "Waiters", "/waiters"
+              - if admin_signed_in?
+                li= link_to "Foods", "/foods?food_type=foods"
+                li= link_to "Drinks", "/foods?food_type=drinks"
+                li= link_to "Waiters", "/waiters"
               li= link_to "Customers", "/customers"
+              - if !admin_signed_in?
+                li= link_to 'Admin Sign In', new_admin_session_path
+              - else
+                li.dropdown-submenu
+                  a.dropdown-toggle href="#" data-toggle="dropdown"
+                    = current_admin.email
+                    b.caret
+                  ul.dropdown-menu.nav
+                    li
+                      = link_to "Edit Account", edit_admin_registration_path
+                    li
+                      = link_to "Log Out", destroy_admin_session_path, :method => :delete
 
     .container
       .row
@@ -43,4 +56,4 @@ html lang="en"
           = yield
 
       footer
-        p &copy; Company 2016
+        p &copy; A Really Awesome Company 2016
