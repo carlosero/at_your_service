@@ -32,16 +32,4 @@ div class="page-header"
   = will_paginate @orders
   .clear
   = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
-.col-lg-3
-  h2 Search fields
-  = search_form_for @q, { :class => "form-inline" } do |f|
-
-    = f.label :waiter_name_or_customer_name_cont
-    = f.search_field :waiter_name_or_customer_name_cont, :placeholder => "Search for customer or waiter", :class => "string optional form-control"
-
-    = f.label :status_eq
-    = f.select :status_eq, ['active', 'finished'],{:include_blank => "Select one"}, :class => "select optional form-control"
-
-    .ransack_search_buttons
-      = f.submit "Search", class: "btn btn-default btn-primary"
-      = link_to "Clear", request.path, class:"btn btn-default"
+= render('orders_search')

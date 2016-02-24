@@ -1,0 +1,20 @@
+.col-lg-3
+  h2 Search fields
+  = search_form_for @q, { :class => "form-horizontal" } do |f|
+
+    .form-group
+      = f.label :waiter_name_or_customer_name_cont
+      = f.search_field :waiter_name_or_customer_name_cont, :placeholder => "Search for customer or waiter", :class => "string optional form-control"
+
+    .form-group
+      = f.label :table_eq, "Table Number"
+      = f.select :table_id_eq, Table.pluck(:id), {:include_blank => "Select one"}, :class => "select optional form-control"
+
+    .form-group
+      = f.label :status_eq
+      = f.select :status_eq, ['active', 'finished'],{:include_blank => "Select one"}, :class => "select optional form-control"
+
+    .form-group
+      .ransack_search_buttons
+        = f.submit "Search", class: "btn btn-default btn-primary"
+        = link_to "Clear", request.path, class:"btn btn-default"
