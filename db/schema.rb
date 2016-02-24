@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224003831) do
+ActiveRecord::Schema.define(version: 20160224022414) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20160224003831) do
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
   end
+
+  create_table "foods_orders", force: :cascade do |t|
+    t.integer  "food_id",    limit: 4
+    t.integer  "order_id",   limit: 4
+    t.integer  "amount",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "foods_orders", ["food_id"], name: "index_foods_orders_on_food_id", using: :btree
+  add_index "foods_orders", ["order_id"], name: "index_foods_orders_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "waiter_id",   limit: 4
@@ -56,6 +67,8 @@ ActiveRecord::Schema.define(version: 20160224003831) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "foods_orders", "foods"
+  add_foreign_key "foods_orders", "orders"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "tables"
   add_foreign_key "orders", "waiters"

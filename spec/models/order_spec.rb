@@ -22,6 +22,6 @@ RSpec.describe Order, type: :model do
     order = FactoryGirl.create(:order)
     order.foods << foods
 
-    expect(order.total_price).to eq(foods.sum{ |food|food.price })
+    expect(order.total_price).to eq(foods.map(&:price).sum)
   end
 end

@@ -21,4 +21,12 @@ RSpec.describe Waiter, type: :model do
     waiter = FactoryGirl.create(:waiter)
     expect(FactoryGirl.build(:waiter, email: waiter.email)).to be_invalid
   end
+
+  it "knows its tables" do
+    waiter = FactoryGirl.create(:waiter)
+    tables = []
+    tables << FactoryGirl.create(:order, waiter: waiter).table
+    tables << FactoryGirl.create(:order, waiter: waiter).table
+    expect(waiter.current_tables).to eq(tables)
+  end
 end
