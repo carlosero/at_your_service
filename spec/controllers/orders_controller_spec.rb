@@ -27,7 +27,8 @@ RSpec.describe OrdersController, type: :controller do
     {
       table_id: FactoryGirl.create(:empty_table).id,
       waiter_id: FactoryGirl.create(:waiter).id,
-      customer_id: FactoryGirl.create(:customer).id
+      customer_id: FactoryGirl.create(:customer).id,
+      status: 'active'
     }
   }
 

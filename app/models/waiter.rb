@@ -6,4 +6,7 @@ class Waiter < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates_format_of :email, with: /\A[^@]+@[^@]+\z/
 
+  def current_tables
+    orders.active.map(&:table)
+  end
 end
