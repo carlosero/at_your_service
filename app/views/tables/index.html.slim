@@ -22,7 +22,7 @@ div class="page-header"
         .customer
         | Customer:&nbsp;
         span.table-customer = link_to table.customer.name, customer_path(table.customer)
-        - if table.in_use
-          .total-price
-          | Total Price:&nbsp;
-          span = link_to number_to_currency(table.current_order.total_price), order_path(table.current_order)
+        .total-price
+        | Total Price:&nbsp;
+        span = number_to_currency(table.current_order.total_price)
+        span.close-order = link_to " [Close Order]", order_path(table.current_order)

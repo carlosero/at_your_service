@@ -23,6 +23,13 @@ class FoodsController < ApplicationController
   # GET /foods/new
   def new
     @food = Food.new
+    if params[:food_type] && params[:food_type] == 'drinks'
+      @food.food_type = 'drink'
+      @food_type = 'Drink'
+    else
+      @food.food_type = 'food'
+      @food_type = 'Food'
+    end
   end
 
   # GET /foods/1/edit

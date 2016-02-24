@@ -1,12 +1,10 @@
 = simple_form_for @order, :html => { :class => "form-horizontal" } do |f|
-  = f.input :waiter_id
+  = f.association :waiter
   = error_span(@order[:waiter_id])
-  = f.input :customer_id
+  = f.association :customer
   = error_span(@order[:customer_id])
-  = f.input :table_id
+  = f.association :table, collection: Table.availables, label_method: :id, prompt: "Choose an available table"
   = error_span(@order[:table_id])
-  = f.input :status
-  = error_span(@order[:status])
   = f.button :submit, :class => 'btn-primary'
   '
   = link_to t('.cancel', :default => t("helpers.links.cancel")), orders_path, :class => 'btn btn-default'

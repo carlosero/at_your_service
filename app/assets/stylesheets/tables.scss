@@ -1,6 +1,3 @@
-// Place all the styles related to the tables controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 .table-info {
   background-image: url(asset_path('table.png'));
   background-size: 95% 95%;
@@ -26,4 +23,7 @@ a.table-create-order img {
   width: 29px;
   height: 30px;
   padding-top: 2px;
+}
+span.close-order a {
+  color: #48FF1F;
 }

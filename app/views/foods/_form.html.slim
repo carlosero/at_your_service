@@ -3,10 +3,9 @@
   = error_span(@food[:name])
   = f.input :description
   = error_span(@food[:description])
-  = f.input :food_type
-  = error_span(@food[:food_type])
+  = f.input :food_type, :as => :hidden
   = f.input :price
   = error_span(@food[:price])
-  = f.button :submit, :class => 'btn-primary'
+  = f.button :submit, "Save", :class => 'btn-primary'
   '
   = link_to t('.cancel', :default => t("helpers.links.cancel")), foods_path, :class => 'btn btn-default'

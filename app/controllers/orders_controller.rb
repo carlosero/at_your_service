@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @order.table = Table.find(params[:table_id]) if params[:table_id]
   end
 
   # GET /orders/1/edit
@@ -25,9 +26,11 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.status = 'active'
     respond_to do |format|
       if @order.save
+        @order.table.in_use = true
+        @order.table.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
