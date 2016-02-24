@@ -1,0 +1,5 @@
+#add_order_fields style="display: none"
+  = simple_form_for :order, :html => { :class => 'form-horizontal' } do |f|
+    = f.input :table_id, :as => :hidden
+    = f.input :waiter, collection: Waiter.active
+    = f.input :customer, collection: Customer.active
