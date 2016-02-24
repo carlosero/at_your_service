@@ -22,7 +22,7 @@ RSpec.describe Order, type: :model do
   it "knows its total price" do
     foods = []
     foods << FactoryGirl.create(:food)
-    foods << FactoryGirl.create(:dish)
+    foods << FactoryGirl.create(:food)
     foods << FactoryGirl.create(:drink)
 
     order = FactoryGirl.create(:order)

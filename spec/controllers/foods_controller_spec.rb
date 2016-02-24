@@ -39,19 +39,12 @@ RSpec.describe FoodsController, type: :controller do
   describe "GET #index" do
     before do
       @food = FactoryGirl.create(:food)
-      @dish = FactoryGirl.create(:dish)
       @drink = FactoryGirl.create(:drink)
     end
     context "with no params" do
       it "assigns all foods as @foods" do
         get :index, {}, valid_session
-        expect(assigns(:foods)).to eq([@food, @dish, @drink])
-      end
-    end
-    context "with food_type = dishes" do
-      it "assigns only dishes as @foods" do
-        get :index, {food_type: 'dishes'}, valid_session
-        expect(assigns(:foods)).to eq([@dish])
+        expect(assigns(:foods)).to eq([@food, @drink])
       end
     end
     context "with food_type = drinks" do

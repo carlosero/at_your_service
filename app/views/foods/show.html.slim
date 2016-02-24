@@ -11,13 +11,13 @@ p
   br
   = @food.description
 p
-  strong= model_class.human_attribute_name(:type) + ':'
+  strong= model_class.human_attribute_name(:food_type) + ':'
   br
-  = @food.type
+  = @food.food_type
 p
   strong= model_class.human_attribute_name(:price) + ':'
   br
-  = @food.price
+  = number_to_currency(@food.price)
 
 = link_to t('.back', :default => t("helpers.links.back")), foods_path, :class => 'btn btn-default'
 '
