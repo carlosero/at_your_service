@@ -1,0 +1,6 @@
+= simple_form_for @table, :html => { :class => "form-horizontal" } do |f|
+  = f.input :in_use
+  = error_span(@table[:in_use])
+  = f.button :submit, :class => 'btn-primary'
+  '
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), tables_path, :class => 'btn btn-default'
