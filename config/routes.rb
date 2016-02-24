@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :waiters
   resources :foods
   resources :customers
   # The priority is based upon order of creation: first created -> highest priority.

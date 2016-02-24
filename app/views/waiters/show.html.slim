@@ -1,0 +1,22 @@
+- model_class = Waiter
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.titleize
+
+p
+  strong= model_class.human_attribute_name(:name) + ':'
+  br
+  = @waiter.name
+p
+  strong= model_class.human_attribute_name(:phone) + ':'
+  br
+  = @waiter.phone
+p
+  strong= model_class.human_attribute_name(:email) + ':'
+  br
+  = @waiter.email
+
+= link_to t('.back', :default => t("helpers.links.back")), waiters_path, :class => 'btn btn-default'
+'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_waiter_path(@waiter), :class => 'btn btn-default'
+'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), waiter_path(@waiter), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
