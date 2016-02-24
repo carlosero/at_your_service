@@ -18,4 +18,8 @@ class Table < ActiveRecord::Base
     current_order.customer if current_order
   end
 
+  def available
+    !in_use
+  end
+
 end
