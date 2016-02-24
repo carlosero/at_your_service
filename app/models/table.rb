@@ -22,4 +22,8 @@ class Table < ActiveRecord::Base
     !in_use
   end
 
+  def foods
+    current_order ? current_order.foods_orders : []
+  end
+
 end

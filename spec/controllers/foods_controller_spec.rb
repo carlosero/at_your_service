@@ -42,9 +42,9 @@ RSpec.describe FoodsController, type: :controller do
       @drink = FactoryGirl.create(:drink)
     end
     context "with no params" do
-      it "assigns all foods as @foods" do
+      it "assigns default food_type = foods" do
         get :index, {}, valid_session
-        expect(assigns(:foods)).to eq([@food, @drink])
+        expect(assigns(:foods)).to eq([@food])
       end
     end
     context "with food_type = drinks" do

@@ -3,9 +3,46 @@ div class="page-header"
   h1=t '.title', :default => model_class.model_name.human.titleize
 
 p
-  strong= model_class.human_attribute_name(:in_use) + ':'
-  br
-  = @table.in_use
+  strong Status:
+  = @table.in_use ? "In Use" : "Available"
+p
+  strong Table Number:
+  = @table.id
+- if @table.in_use
+  p
+    strong Order Number:
+    = @table.current_order.id
+  p
+    strong Waiter:
+    = link_to @table.waiter.name, waiter_path(@table.waiter)
+  p
+    strong Customer:
+    = link_to @table.customer.name, customer_path(@table.customer)
+  p
+    strong Total Price:
+    = number_to_currency(@table.current_order.total_price)
+
+h3
+  strong Foods & Drinks
+table.table
+  thead
+    tr
+      th Name
+      th Type
+      th Amount
+      th Price
+  tbody
+    - @table.foods.each do |foods_order|
+      tr
+        td = foods_order.food.name
+        td = foods_order.food.food_type.camelize
+        td = foods_order.amount
+        td = number_to_currency(foods_order.total_price)
+    tr
+      td TOTAL
+      td
+      td = @table.foods.sum(:amount)
+      td = number_to_currency(@table.current_order.total_price)
 
 = link_to t('.back', :default => t("helpers.links.back")), tables_path, :class => 'btn btn-default'
 '
