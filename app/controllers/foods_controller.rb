@@ -4,10 +4,12 @@ class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
   def index
+    @title = 'Foods'
     if params[:food_type] && params[:food_type] == 'drinks'
       @foods = Food.drinks
-    elsif params[:food_type] == 'dishes'
-      @foods = Food.dishes
+      @title = 'Drinks'
+    elsif params[:food_type] == 'foods'
+      @foods = Food.foods
     else
       @foods = Food.all
     end

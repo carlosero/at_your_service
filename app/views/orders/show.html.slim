@@ -1,15 +1,26 @@
-p#notice = notice
+- model_class = Order
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.titleize
 
 p
-  strong Waiter:
-  = @order.waiter
+  strong= model_class.human_attribute_name(:waiter_id) + ':'
+  br
+  = @order.waiter_id
 p
-  strong Customer:
-  = @order.customer
+  strong= model_class.human_attribute_name(:customer_id) + ':'
+  br
+  = @order.customer_id
 p
-  strong Table:
-  = @order.table
+  strong= model_class.human_attribute_name(:table_id) + ':'
+  br
+  = @order.table_id
+p
+  strong= model_class.human_attribute_name(:status) + ':'
+  br
+  = @order.status
 
-= link_to 'Edit', edit_order_path(@order)
-'|
-= link_to 'Back', orders_path
+= link_to t('.back', :default => t("helpers.links.back")), orders_path, :class => 'btn btn-default'
+'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn btn-default'
+'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(@order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
