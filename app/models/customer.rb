@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   scope :deactivated, -> { where(active: false) }
 
   validates :name,  presence:   true, length: { minimum: 4 }
-  validates :email, uniqueness: { case_sensitive: true }
+  validates :email, uniqueness: { case_sensitive: true }, :allow_nil => true
   validates_format_of :email, with: /\A[^@]+@[^@]+\z/, :allow_nil => true
 
   def deactivate!

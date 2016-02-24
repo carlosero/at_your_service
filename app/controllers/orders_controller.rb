@@ -25,6 +25,11 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    @mode = params[:mode]
+    if @mode == 'add_customer'
+      customer = Customer.create(name: params[:customer_name])
+      params[:order][:customer_id] = customer.id
+    end
     @order = Order.new(order_params)
     @order.status = 'active'
     respond_to do |format|

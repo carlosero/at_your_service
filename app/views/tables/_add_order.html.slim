@@ -2,4 +2,6 @@
   = simple_form_for :order, :html => { :class => 'form-horizontal' } do |f|
     = f.input :table_id, :as => :hidden
     = f.input :waiter, collection: Waiter.active
-    = f.input :customer, collection: Customer.active
+    = f.input :customer, collection: Customer.active, label: "Customer #{link_to('[add new]', '#', onclick: "set_add_customer_mode()", class: 'add_customer_link')}".html_safe
+    .new_customer_form style="display: none"
+      = f.input :customer_name, label: false, placeholder: "Customer Name"
