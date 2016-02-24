@@ -157,7 +157,7 @@ RSpec.describe FoodsController, type: :controller do
       food = Food.create! valid_attributes
       expect {
         delete :destroy, {:id => food.to_param}, valid_session
-      }.to change(Food, :count).by(-1)
+      }.to change(Food.active, :count).by(-1)
     end
 
     it "redirects to the foods list" do

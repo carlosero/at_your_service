@@ -124,11 +124,11 @@ RSpec.describe CustomersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested customer" do
+    it "destroys virtually the requested customer" do
       customer = Customer.create! valid_attributes
       expect {
         delete :destroy, {:id => customer.to_param}, valid_session
-      }.to change(Customer, :count).by(-1)
+      }.to change(Customer.active, :count).by(-1)
     end
 
     it "redirects to the customers list" do

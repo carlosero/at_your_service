@@ -146,7 +146,7 @@ RSpec.describe WaitersController, type: :controller do
       waiter = Waiter.create! valid_attributes
       expect {
         delete :destroy, {:id => waiter.to_param}, valid_session
-      }.to change(Waiter, :count).by(-1)
+      }.to change(Waiter.active, :count).by(-1)
     end
 
     it "redirects to the waiters list" do

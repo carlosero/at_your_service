@@ -4,7 +4,7 @@ class WaitersController < ApplicationController
   # GET /waiters
   # GET /waiters.json
   def index
-    @waiters = Waiter.all
+    @waiters = Waiter.active.all
   end
 
   # GET /waiters/1
@@ -54,7 +54,7 @@ class WaitersController < ApplicationController
   # DELETE /waiters/1
   # DELETE /waiters/1.json
   def destroy
-    @waiter.destroy
+    @waiter.deactivate!
     respond_to do |format|
       format.html { redirect_to waiters_url, notice: 'Waiter was successfully destroyed.' }
       format.json { head :no_content }

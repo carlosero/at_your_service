@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224161733) do
+ActiveRecord::Schema.define(version: 20160224163919) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "phone",      limit: 255
     t.string   "email",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "active",                 default: true
   end
 
   create_table "foods", force: :cascade do |t|
@@ -65,8 +66,9 @@ ActiveRecord::Schema.define(version: 20160224161733) do
     t.string   "name",       limit: 255
     t.string   "phone",      limit: 255
     t.string   "email",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "active",                 default: true
   end
 
   add_foreign_key "foods_orders", "foods"
