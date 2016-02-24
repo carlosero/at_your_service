@@ -11,17 +11,19 @@
       {
         text: 'Add'
         click: ->
-          amount = $('#add_food_fields').find('#foods_order_amount').val()
-          food_id = selected_food_id()
-          create_foods_order(id, food_id, amount)
-          $(this).dialog 'close'
+          if food_is_valid()
+            amount = $('#add_food_fields').find('#foods_order_amount').val()
+            food_id = selected_food_id()
+            create_foods_order(id, food_id, amount)
+            $(this).dialog 'close'
       }
       {
         text: 'Add Other'
         click: ->
-          amount = $('#add_food_fields').find('#foods_order_amount').val()
-          food_id = selected_food_id()
-          create_foods_order(id, food_id, amount)
+          if food_is_valid()
+            amount = $('#add_food_fields').find('#foods_order_amount').val()
+            food_id = selected_food_id()
+            create_foods_order(id, food_id, amount)
       }
       {
         text: 'Close'
@@ -30,6 +32,22 @@
           reset_food_form()
       }
     ]
+
+@food_is_valid = ->
+  fields_with_errors = false
+  errors = []
+
+  amount = $('#add_food_fields').find('#foods_order_amount').val()
+  food_id = selected_food_id()
+
+  if parseInt(amount) <= 0
+    fields_with_errors = true
+    errors.push "Amount must be bigger than 0"
+  if food_id == "" or food_id == undefined or food_id == null
+    fields_with_errors = true
+    errors.push "You must select a #{@current_food_type.slice(0,-1)}"
+  alert("There are some errors on the form:\n#{errors.join('\n')}") if fields_with_errors
+  !fields_with_errors
 
 @create_foods_order = (order_id, food_id, amount) ->
   $.ajax
