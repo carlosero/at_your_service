@@ -13,7 +13,6 @@ RSpec.describe Table, type: :model do
       FactoryGirl.create(:table_in_use)
     end
     it "the available tables" do
-      puts "Tables = #{Table.all.inspect}"
       expect(Table.availables.count).to eq(1)
     end
     it "the tables in use" do
@@ -27,15 +26,16 @@ RSpec.describe Table, type: :model do
       @order = FactoryGirl.create(:order, {table: @table})
     end
 
+    it "knows it's order" do
+      expect(@table.current_order).to eq(@order)
+    end
+
     it "knows it's customer" do
       expect(@table.customer).to eq(@order.customer)
     end
 
     it "knows it's waiter" do
       expect(@table.waiter).to eq(@order.waiter)
-    end
-    it "knows it's order" do
-      expect(@table.order).to eq(@order)
     end
   end
 end

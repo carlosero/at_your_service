@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Waiter:
+  = @order.waiter
+p
+  strong Customer:
+  = @order.customer
+p
+  strong Table:
+  = @order.table
+
+= link_to 'Edit', edit_order_path(@order)
+'|
+= link_to 'Back', orders_path
