@@ -12,7 +12,7 @@
 
     .form-group
       = f.label :status_eq
-      = f.select :status_eq, ['active', 'finished'],{:include_blank => "Select one"}, :class => "select optional form-control"
+      = f.select :status_eq, [['Active', 'active'], ['Finished', 'finished']],{:include_blank => "Select one"}, :class => "select optional form-control"
 
     .form-group
       .ransack_search_buttons

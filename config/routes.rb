@@ -7,8 +7,15 @@ Rails.application.routes.draw do
   end
   resources :tables
   resources :waiters
-  resources :foods
+  resources :foods do
+    collection do
+      get 'foods'
+      get 'drinks'
+    end
+  end
   resources :customers
+
+  root 'tables#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

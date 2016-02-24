@@ -1,19 +1,21 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
-  # GET /foods
-  # GET /foods.json
   def index
     @title = 'Foods'
+    params[:food_type] = params[:q].delete(:food_type) if params[:q]
+    params[:food_type] ||= 'foods'
     if params[:food_type] && params[:food_type] == 'drinks'
-      @foods = Food.active.drinks
+      @base_model = Food.active.drinks
       @title = 'Drinks'
     elsif params[:food_type] == 'foods'
-      @foods = Food.active.foods
+      @base_model = Food.active.foods
     else
-      @foods = Food.active
+      @base_model = Food.active
     end
-    @foods = @foods.paginate(:page => params[:page])
+    @q = @base_model.ransack(params[:q])
+
+    @foods = @q.result.paginate(:page => params[:page])
   end
 
   # GET /foods/1
@@ -78,6 +80,7 @@ class FoodsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_food
       @food = Food.find(params[:id])
