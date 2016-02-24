@@ -9,8 +9,8 @@ RSpec.describe Customer, type: :model do
     expect(FactoryGirl.build(:customer, name: nil)).to be_invalid
   end
 
-  it "is invalid without email" do
-    expect(FactoryGirl.build(:customer, email: nil)).to be_invalid
+  it "is valid with only a name" do
+    expect(FactoryGirl.build(:customer, email: nil)).to be_valid
   end
 
   it "is invalid with a wrong email" do
