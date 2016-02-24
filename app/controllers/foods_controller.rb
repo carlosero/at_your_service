@@ -6,12 +6,12 @@ class FoodsController < ApplicationController
   def index
     @title = 'Foods'
     if params[:food_type] && params[:food_type] == 'drinks'
-      @foods = Food.drinks
+      @foods = Food.active.drinks
       @title = 'Drinks'
     elsif params[:food_type] == 'foods'
-      @foods = Food.foods
+      @foods = Food.active.foods
     else
-      @foods = Food.all
+      @foods = Food.active.all
     end
   end
 
@@ -69,7 +69,7 @@ class FoodsController < ApplicationController
   # DELETE /foods/1
   # DELETE /foods/1.json
   def destroy
-    @food.destroy
+    @food.deactivate!
     respond_to do |format|
       format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
