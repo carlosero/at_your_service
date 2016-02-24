@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'simple_form'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

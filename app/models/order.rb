@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
   validates :status, :presence => true, :inclusion => ['active', 'finished', 'canceled']
 
   def total_price
-    foods.sum(:price)
+    foods_orders.map(&:total_price).sum
   end
 
   def close

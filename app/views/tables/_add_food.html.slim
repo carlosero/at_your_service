@@ -1,0 +1,9 @@
+#add_food_fields style="display: none"
+  = simple_form_for :foods_order, :html => { :class => 'form-horizontal' } do |f|
+    = f.input :order_id, :as => :hidden
+    = f.input :food_type, :as => :radio_buttons, :collection => ['foods', 'drinks'], :checked => 'foods', :input_html => {onclick: "change_food_type(this.value)"}
+    div.foods_order_foods
+      = f.input :food, :collection => Food.foods
+    div.foods_order_drinks style="display: none"
+      = f.input :drink, :collection => Food.foods
+    = f.input :amount, :as => :integer

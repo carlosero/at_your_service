@@ -73,9 +73,15 @@ class OrdersController < ApplicationController
 
   # custom routes
   def add_food
-    @order.close
-    @order.save
-    redirect_to tables_path
+    @foods_order = FoodsOrder.new
+    @foods_order.order_id = params[:food][:order_id]
+    @foods_order.amount = params[:food][:amount]
+    @foods_order.food_id = params[:food][:food_id]
+    if @foods_order.save
+      render json: {new_total: @foods_order.order.total_price}, status: :ok
+    else
+      render json: @foods_order.errors, status: :unprocessable_entity
+    end
   end
 
   private

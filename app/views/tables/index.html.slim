@@ -24,7 +24,8 @@ div class="page-header"
         span.table-customer = link_to table.customer.name, customer_path(table.customer)
         .total-price
         | Total Price:&nbsp;
-        span = number_to_currency(table.current_order.total_price)
+        span class="order_#{table.current_order.id}_total" = number_to_currency(table.current_order.total_price)
         span.close-order = link_to " [Close Order]", close_order_path(table.current_order), :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
-        span.add-food = link_to " [+food]", add_food_order_path(table.current_order)
+        span.add-food = link_to " [+food]", '#', onclick: "add_food(#{table.current_order.id})"
 
+= render(partial: "add_food")

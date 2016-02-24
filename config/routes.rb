@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :orders do
     member do
       get 'close'
-      get 'add_food'
+      post 'add_food'
     end
   end
   resources :tables
