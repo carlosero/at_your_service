@@ -6,9 +6,9 @@ class Table < ActiveRecord::Base
 
   validates :in_use, :inclusion => [true, false]
 
-  attr_reader :current_order
-
-  after_initialize { @current_order = orders.last if in_use }
+  def current_order
+    (@current_order ||= orders.last) if in_use
+  end
 
   def waiter
     current_order.waiter if current_order

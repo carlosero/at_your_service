@@ -24,6 +24,7 @@ RSpec.describe Table, type: :model do
     before do
       @table = FactoryGirl.create(:table_in_use)
       @order = FactoryGirl.create(:order, {table: @table})
+      @table.current_order
     end
 
     it "knows it's order" do

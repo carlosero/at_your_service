@@ -26,6 +26,7 @@ gem "slim-rails"
 gem 'simple_form'
 gem 'jquery-ui-rails'
 gem 'will_paginate'
+gem 'ransack'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
