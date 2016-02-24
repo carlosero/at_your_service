@@ -13,19 +13,7 @@
         click: ->
           amount = $('#add_food_fields').find('#foods_order_amount').val()
           food_id = selected_food_id()
-          $.ajax
-            url: "/orders/#{id}/add_food"
-            type: 'POST'
-            dataType: 'JSON'
-            data: 'food':
-              order_id: id
-              amount: amount
-              food_id: food_id
-            error: (jqXHR, textStatus, errorThrown) ->
-              console.log 'AJAX Error: ' + textStatus
-            success: (data, textStatus, jqXHR) ->
-              $('span.order_' + id + '_total').html("$" + data.new_total)
-              reset_food_form()
+          create_foods_order(id, food_id, amount)
           $(this).dialog 'close'
       }
       {
@@ -33,19 +21,7 @@
         click: ->
           amount = $('#add_food_fields').find('#foods_order_amount').val()
           food_id = selected_food_id()
-          $.ajax
-            url: "/orders/#{id}/add_food"
-            type: 'POST'
-            dataType: 'JSON'
-            data: 'food':
-              order_id: id
-              amount: amount
-              food_id: food_id
-            error: (jqXHR, textStatus, errorThrown) ->
-              console.log 'AJAX Error: ' + textStatus
-            success: (data, textStatus, jqXHR) ->
-              $('span.order_' + id + '_total').html("$" + data.new_total)
-              reset_food_form()
+          create_foods_order(id, food_id, amount)
       }
       {
         text: 'Close'
@@ -54,6 +30,21 @@
           reset_food_form()
       }
     ]
+
+@create_foods_order = (order_id, food_id, amount) ->
+  $.ajax
+    url: "/orders/#{order_id}/add_food"
+    type: 'POST'
+    dataType: 'JSON'
+    data: 'food':
+      order_id: order_id
+      food_id: food_id
+      amount: amount
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log 'AJAX Error: ' + textStatus
+    success: (data, textStatus, jqXHR) ->
+      $("span.order_#{order_id}_total").html("$" + data.new_total)
+      reset_food_form()
 
 @change_food_type = (type) ->
   @current_food_type = type;
