@@ -1,0 +1,14 @@
+h1 Most Used Tables
+= render partial: 'month_and_date'
+table.table
+  thead
+    tr
+      th Table Number
+      th Uses
+  tbody
+    - @orders.each do |order|
+      tr
+        td = order.table_number
+        td = order.amount
+
+= link_to 'Back', reports_path, class: "btn btn-default"

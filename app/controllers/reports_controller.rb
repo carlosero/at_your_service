@@ -36,6 +36,16 @@ class ReportsController < ApplicationController
     @total_price = @orders.to_a.sum(&:final_price)
   end
 
+  def most_used_tables
+    @orders = Order
+    @orders = date_query_for(@orders)
+    @orders = @orders.select("table_id as table_number, COUNT(1) as amount")
+    @orders = @orders.group("table_number")
+    @orders = @orders.order("amount DESC")
+    @orders = @orders.limit(9)
+    @orders = @orders.uniq
+  end
+
   private
 
     def date_query_for(model, klass = nil)

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'best_selling_foods'
       get 'best_waiters'
       get 'winnings_per_day'
+      get 'most_used_tables'
     end
   end
 
