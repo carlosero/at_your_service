@@ -1,5 +1,10 @@
 class ReportsController < ApplicationController
   before_action :authenticate_admin!
+  prawnto :prawn=> {
+    :page_size => "LETTER",
+    :page_layout => :portrait,
+    :margin => 50
+  }
 
   def index
   end
@@ -12,6 +17,16 @@ class ReportsController < ApplicationController
     @foods_orders = @foods_orders.group(:food_id)
     @foods_orders = @foods_orders.limit(30)
     @foods_orders = @foods_orders.uniq
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @report_title = "Best Selling Foods"
+        @columns = {'food_name' => 'Food Name', 'food_type' => 'Food Type', 'amount' => 'Sold'}
+        @model = @foods_orders
+        stream = render_to_string(:template=>"reports/template", :formats => [:pdf])
+        send_data(stream, :type=>"application/pdf",:filename => "best_slling_foods.pdf", :disposition => "inline")
+      end
+    end
   end
 
   def best_waiters
@@ -22,6 +37,16 @@ class ReportsController < ApplicationController
     @orders = @orders.group(:waiter_id)
     @orders = @orders.limit(30)
     @orders = @orders.uniq
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @report_title = "Best Waiters"
+        @columns = {'waiter_name' => 'Waiter Name', 'waiter_email' => 'Waiter Email', 'orders_served' => 'Orders Served'}
+        @model = @orders
+        stream = render_to_string(:template=>"reports/template", :formats => [:pdf])
+        send_data(stream, :type=>"application/pdf",:filename => "best_slling_foods.pdf", :disposition => "inline")
+      end
+    end
   end
 
   def winnings_per_day
@@ -34,6 +59,16 @@ class ReportsController < ApplicationController
     @orders = @orders.uniq
     @total_orders = @orders.to_a.sum(&:amount)
     @total_price = @orders.to_a.sum(&:final_price)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @report_title = "Winnings Per Day"
+        @columns = {'each_day' => 'Day', 'amount' => 'Amount of Orders', 'final_price' => 'Total'}
+        @model = @orders
+        stream = render_to_string(:template=>"reports/template", :formats => [:pdf])
+        send_data(stream, :type=>"application/pdf",:filename => "best_slling_foods.pdf", :disposition => "inline")
+      end
+    end
   end
 
   def most_used_tables
@@ -44,6 +79,16 @@ class ReportsController < ApplicationController
     @orders = @orders.order("amount DESC")
     @orders = @orders.limit(9)
     @orders = @orders.uniq
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @report_title = "Most Used Tables"
+        @columns = {'table_number' => 'Table Number', 'amount' => 'Amount of Uses'}
+        @model = @orders
+        stream = render_to_string(:template=>"reports/template", :formats => [:pdf])
+        send_data(stream, :type=>"application/pdf",:filename => "best_slling_foods.pdf", :disposition => "inline")
+      end
+    end
   end
 
   private

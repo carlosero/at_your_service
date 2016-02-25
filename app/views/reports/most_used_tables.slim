@@ -12,3 +12,4 @@ table.table
         td = order.amount
 
 = link_to 'Back', reports_path, class: "btn btn-default"
+= link_to 'Generate PDF', most_used_tables_reports_path(report_month: params[:report_month], report_year: params[:report_year], format: 'pdf'), class: "btn btn-default"

@@ -14,3 +14,4 @@ table.table
         td = foods_order.amount
 
 = link_to 'Back', reports_path, class: "btn btn-default"
+= link_to 'Generate PDF', best_selling_foods_reports_path(report_month: params[:report_month], report_year: params[:report_year], format: 'pdf'), class: "btn btn-default"

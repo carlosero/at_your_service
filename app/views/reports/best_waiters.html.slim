@@ -14,3 +14,4 @@ table.table
         td = order.orders_served
 
 = link_to 'Back', reports_path, class: "btn btn-default"
+= link_to 'Generate PDF', best_waiters_reports_path(report_month: params[:report_month], report_year: params[:report_year], format: 'pdf'), class: "btn btn-default"

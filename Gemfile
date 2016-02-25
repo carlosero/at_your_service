@@ -28,6 +28,10 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'ransack'
 
+# pdfs
+gem 'prawn'
+gem 'prawnto'
+
 # login
 gem 'devise'
 

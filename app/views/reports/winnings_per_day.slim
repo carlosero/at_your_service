@@ -22,3 +22,4 @@ table.table
         b = number_to_currency(@total_price)
 
 = link_to 'Back', reports_path, class: "btn btn-default"
+= link_to 'Generate PDF', winnings_per_day_reports_path(report_month: params[:report_month], report_year: params[:report_year], format: 'pdf'), class: "btn btn-default"
