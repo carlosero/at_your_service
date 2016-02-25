@@ -28,58 +28,45 @@ Rails.application.routes.draw do
   resources :foods_orders, only: [:destroy]
 
   root 'tables#index'
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # REST API Standalone Webservices
+  namespace :api, {format: :json} do
+    namespace :v1 do
+      # tables
+      get  '/tables',     to: 'api#tables'
+      get  '/tables/:id', to: 'api#table'
+      post '/tables',     to: 'api#create_table'
+      put  '/tables/:id', to: 'api#update_table'
+      # orders
+      get  '/orders',     to: 'api#orders'
+      get  '/orders/:id', to: 'api#order'
+      post '/orders',     to: 'api#create_order'
+      put  '/orders/:id', to: 'api#update_order'
+      # foods
+      get    '/foods',     to: 'api#foods'
+      get    '/foods/:id', to: 'api#food'
+      post   '/foods',     to: 'api#create_food'
+      put    '/foods/:id', to: 'api#update_food'
+      delete '/foods/:id', to: 'api#destroy_food'
+      # drinks
+      get    '/drinks',     to: 'api#drinks'
+      get    '/drinks/:id', to: 'api#drink'
+      post   '/drinks',     to: 'api#create_drink'
+      put    '/drinks/:id', to: 'api#update_drink'
+      delete '/drinks/:id', to: 'api#destroy_drink'
+      # waiters
+      get    '/waiters',     to: 'api#waiters'
+      get    '/waiters/:id', to: 'api#waiter'
+      post   '/waiters',     to: 'api#create_waiter'
+      put    '/waiters/:id', to: 'api#update_waiter'
+      delete '/waiters/:id', to: 'api#destroy_waiter'
+      # customers
+      get    '/customers',     to: 'api#customers'
+      get    '/customers/:id', to: 'api#customer'
+      post   '/customers',     to: 'api#create_customer'
+      put    '/customers/:id', to: 'api#update_customer'
+      delete '/customers/:id', to: 'api#destroy_customer'
+    end
+  end
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end
