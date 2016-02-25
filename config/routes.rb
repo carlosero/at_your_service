@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'reports/index'
-
   devise_for :admins
   resources :orders do
     member do
@@ -25,6 +23,8 @@ Rails.application.routes.draw do
       get 'winnings_per_day'
     end
   end
+
+  resources :foods_orders, only: [:destroy]
 
   root 'tables#index'
   # The priority is based upon order of creation: first created -> highest priority.

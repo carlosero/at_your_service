@@ -23,27 +23,7 @@ p
     = number_to_currency(@table.current_order.total_price)
 
 - if @table.foods.any?
-  h3
-    strong Foods & Drinks
-  table.table
-    thead
-      tr
-        th Name
-        th Type
-        th Amount
-        th Price
-    tbody
-      - @table.foods.each do |foods_order|
-        tr
-          td = foods_order.food.name
-          td = foods_order.food.food_type.camelize
-          td = foods_order.amount
-          td = number_to_currency(foods_order.total_price)
-      tr
-        td TOTAL
-        td
-        td = @table.foods.sum(:amount)
-        td = number_to_currency(@table.current_order.total_price)
+  = render :partial => 'foods_orders/index', locals: {foods_orders: @table.current_order.foods_orders}
 
 = link_to t('.back', :default => t("helpers.links.back")), tables_path, :class => 'btn btn-default'
 '

@@ -17,30 +17,10 @@ p
 p
   strong= model_class.human_attribute_name(:status) + ':'
   br
-  = @order.status
+  = @order.status.camelize
 
 - if @order.foods_orders.any?
-  h3
-    strong Foods & Drinks
-  table.table
-    thead
-      tr
-        th Name
-        th Type
-        th Amount
-        th Price
-    tbody
-      - @order.foods_orders.each do |foods_order|
-        tr
-          td = foods_order.food.name
-          td = foods_order.food.food_type.camelize
-          td = foods_order.amount
-          td = number_to_currency(foods_order.total_price)
-      tr
-        td TOTAL
-        td
-        td = @order.foods_orders.sum(:amount)
-        td = number_to_currency(@order.total_price)
+  = render :partial => 'foods_orders/index', locals: {foods_orders: @order.foods_orders}
 
 = link_to t('.back', :default => t("helpers.links.back")), orders_path, :class => 'btn btn-default'
 '
