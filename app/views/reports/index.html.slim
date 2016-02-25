@@ -1,0 +1,24 @@
+h1 Reports
+h3 Available Reports
+form.form-inline.report-form action="/reports/best_selling_foods" method="GET"
+  .form-group
+    label Select Report:&nbsp;
+    select.form-control id="report"
+      option value='/reports/best_selling_foods' Best Selling Foods
+      option value='/reports/best_waiters' Best Waiters
+      option value='/reports/winnings_per_day' Winnings Per Day
+
+  .form-group
+    label Select Month:&nbsp;
+    select.form-control id="report_month" name="report_month"
+      - 1.upto(12).each do |i|
+        option value="#{i}"
+          = Date::MONTHNAMES[i]
+  .form-group
+    label Select Year:&nbsp;
+    select.form-control id="report_year" name="report_year"
+      - 2016.downto(2000).each do |i|
+        option value="#{i}" = i
+
+  .form-group
+    input.submit.btn.btn-default value="Generate" type="submit"

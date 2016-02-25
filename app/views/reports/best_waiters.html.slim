@@ -1,0 +1,16 @@
+h1 Best Waiters
+= render partial: 'month_and_date'
+table.table
+  thead
+    tr
+      th Waiter Name
+      th Waiter Email
+      th Orders Served
+  tbody
+    - @orders.each do |order|
+      tr
+        td = order.waiter.name
+        td = order.waiter.email
+        td = order.orders_served
+
+= link_to 'Back', reports_path, class: "btn btn-default"

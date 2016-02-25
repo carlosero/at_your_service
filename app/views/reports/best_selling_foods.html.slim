@@ -1,0 +1,16 @@
+h1 Best Selling Foods
+= render partial: 'month_and_date'
+table.table
+  thead
+    tr
+      th Food Name
+      th Food Type
+      th Sold
+  tbody
+    - @foods_orders.each do |foods_order|
+      tr
+        td = foods_order.food.name
+        td = foods_order.food.food_type.camelize
+        td = foods_order.amount
+
+= link_to 'Back', reports_path, class: "btn btn-default"

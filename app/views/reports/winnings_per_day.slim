@@ -1,0 +1,24 @@
+h1 Winnings per Day
+= render partial: 'month_and_date'
+table.table
+  thead
+    tr
+      th Day
+      th Amount of Orders
+      th Total
+  tbody
+    - @orders.each do |order|
+      tr
+        td = order.each_day
+        td = order.amount
+        td = number_to_currency(order.final_price)
+
+    tr
+      td
+        b TOTAL
+      td
+        b = @total_orders
+      td
+        b = number_to_currency(@total_price)
+
+= link_to 'Back', reports_path, class: "btn btn-default"

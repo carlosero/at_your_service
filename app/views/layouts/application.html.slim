@@ -35,7 +35,8 @@ html lang="en"
                 li= link_to "Foods", "/foods?food_type=foods"
                 li= link_to "Drinks", "/foods?food_type=drinks"
                 li= link_to "Waiters", "/waiters"
-              li= link_to "Customers", "/customers"
+                li= link_to "Customers", "/customers"
+                li= link_to "Reports", "/reports"
               - if !admin_signed_in?
                 li= link_to 'Admin Sign In', new_admin_session_path
               - else
@@ -54,6 +55,7 @@ html lang="en"
         .col-lg-12
           = bootstrap_flash
           = yield
+      hr
 
       footer
         p &copy; A Really Awesome Company 2016

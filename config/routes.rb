@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reports/index'
+
   devise_for :admins
   resources :orders do
     member do
@@ -15,6 +17,14 @@ Rails.application.routes.draw do
     end
   end
   resources :customers
+
+  resources :reports, only: [:index] do
+    collection do
+      get 'best_selling_foods'
+      get 'best_waiters'
+      get 'winnings_per_day'
+    end
+  end
 
   root 'tables#index'
   # The priority is based upon order of creation: first created -> highest priority.
