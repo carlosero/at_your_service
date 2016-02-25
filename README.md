@@ -34,6 +34,12 @@ rake db:test:prepare
 ```
 * Run tests with `rspec`
 
+## REST Api
+
+* The application has all the resources behind a REST API.
+* Simply do any request to /api/v1/orders, /api/v1/tables, /api/v1/foods, or any other resource.
+* You can get all the routes by running `rake routes`
+
 ## Feedback
 
 Contact me if any problems encountered.
