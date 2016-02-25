@@ -8,8 +8,11 @@
 
 ## Getting started
 
+* Install gems
+```shell
+bundle install
+```
 * Create database
-
 ```shell
 rake db:create
 ```
