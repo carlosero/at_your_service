@@ -9,8 +9,8 @@ table.table
   tbody
     - @orders.each do |order|
       tr
-        td = order.waiter.name
-        td = order.waiter.email
+        td = order.waiter_name
+        td = order.waiter_email
         td = order.orders_served
 
 = link_to 'Back', reports_path, class: "btn btn-default"

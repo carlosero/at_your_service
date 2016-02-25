@@ -9,8 +9,8 @@ table.table
   tbody
     - @foods_orders.each do |foods_order|
       tr
-        td = foods_order.food.name
-        td = foods_order.food.food_type.camelize
+        td = foods_order.food_name
+        td = foods_order.food_type.camelize
         td = foods_order.amount
 
 = link_to 'Back', reports_path, class: "btn btn-default"

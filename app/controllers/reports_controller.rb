@@ -5,22 +5,22 @@ class ReportsController < ApplicationController
   end
 
   def best_selling_foods
-    @foods_orders = FoodsOrder.includes(:food)
-    @foods_orders = date_query_for(@foods_orders)
-    @foods_orders = @foods_orders.select('SUM(foods_orders.amount) as amount, food_id, created_at')
+    @foods_orders = FoodsOrder.joins(:food)
+    @foods_orders = date_query_for(@foods_orders, 'foods_orders')
+    @foods_orders = @foods_orders.select('foods.name as food_name, foods.food_type as food_type, SUM(foods_orders.amount) as amount')
     @foods_orders = @foods_orders.order('SUM(amount) desc')
     @foods_orders = @foods_orders.group(:food_id)
-    @foods_orders = @foods_orders.limit(15)
+    @foods_orders = @foods_orders.limit(30)
     @foods_orders = @foods_orders.uniq
   end
 
   def best_waiters
-    @orders = Order.includes(:waiter)
-    @orders = date_query_for(@orders)
-    @orders = @orders.select("waiter_id, COUNT(1) as orders_served")
+    @orders = Order.joins(:waiter)
+    @orders = date_query_for(@orders, "orders")
+    @orders = @orders.select("waiters.name as waiter_name, waiters.email as waiter_email, COUNT(1) as orders_served")
     @orders = @orders.order("COUNT(1) desc")
     @orders = @orders.group(:waiter_id)
-    @orders = @orders.limit(15)
+    @orders = @orders.limit(30)
     @orders = @orders.uniq
   end
 
